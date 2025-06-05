@@ -12,6 +12,8 @@ const Layout = ({children} : props) => {
 
       <Navbar />
 
+      <img src="/Logos/LogoWithoutBg.png" alt="background logo" className='w-96 md:w-[600px] absolute bottom-1/3 left-1/3 opacity-10 -z-10'/>
+
       <main className='flex-grow'>
         {children}
       </main>

@@ -8,7 +8,7 @@ export default function Home() {
         <meta name="description" content="Pati Tekno: Teknoloji, tasarım ve yazılım dünyasına eğlenceli bir pencereden bak!" />
       </Head>
       <div className="mt-24 flex items-center justify-center">
-        <h1 className="text-4xl font-bold text-primary py-6 px-12 rounded-lg bg-white">Sitemiz Şuan Yapılıyor...</h1>
+        <h1 className="text-4xl font-bold text-primary py-6 px-12 rounded-lg">Sitemiz Şuan Yapılıyor...</h1>
       </div>
     </>
   );
