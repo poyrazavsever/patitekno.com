@@ -2,7 +2,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background:#132f48;
-  --color-primary:#84c7f2;
+  --color-background:#EBF7FF;
+  --color-primary:#1181C8;
+  --color-textColor:#3C3C3C;
   --font-nunito: "Nunito", "sans-serif";
+}
+
+body{
+  background-color: var(--color-background);
 }
