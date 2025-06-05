@@ -1,40 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🐾 Pati Tekno
 
-## Getting Started
+**Pati Tekno**, teknoloji, yazılım ve tasarım dünyasına eğlenceli ve öğretici bir pencere açmayı hedefleyen bir projedir. Bu platform, hem bireysel kullanıcıların hem de öğrenci geliştiricilerin içerik üretebileceği ve öğrenebileceği bir ortam sunar.
 
-First, run the development server:
+## Amaç
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Pati Tekno’nun temel amacı; teknoloji, yazılım ve tasarım alanlarında içerikler üreterek, topluluğa katkı sağlamak ve farkındalık oluşturmaktır. Özellikle genç geliştiricilere yönelik açık kaynaklı ve eğitici içerikler hedeflenmektedir.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Özellikler
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- 💡 **Teknoloji Rehberleri** – HTML, CSS, JS, React, Next.js gibi konularda videolu anlatımlar
+- 🖌️ **UI/UX Tasarım** – Figma üzerinden pratik tasarım eğitimleri
+- 📹 **YouTube Kanalı** – Haftalık içeriklerle eğitici video serileri
+- 🧠 **Yazılım Gündemi** – Yeni çıkan teknolojilerin incelenmesi
+- 🐙 **Açık Kaynak Projeler** – Topluluğa açık katkı yapılabilecek projeler
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Teknoloji Yığını
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+- **Frontend:** Next.js + Tailwind CSS  
+- **Tasarım:** Figma  
+- **Veritabanı:** Supabase  
+- **Dağıtım:** Vercel  
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Takip Edin
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+<div align="left">
+  <a href="https://www.instagram.com/patitekno" target="_blank">
+    <img src="https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=E4405F&logoColor=white&labelColor=&style=for-the-badge" height="28" />
+  </a>
+  <a href="https://youtube.com/patitekno" target="_blank">
+    <img src="https://img.shields.io/static/v1?message=YouTube&logo=youtube&label=&color=FF0000&logoColor=white&labelColor=&style=for-the-badge" height="28" />
+  </a>
+</div>
