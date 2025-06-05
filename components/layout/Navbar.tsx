@@ -4,7 +4,7 @@ import { IoMdSearch } from "react-icons/io";
 
 const Navbar = () => {
 
-  const navbarLink = "text-base font-medium text-textColor";
+  const navbarLink = "text-base font-medium text-textColor hover:opacity-70 transition-all";
 
   return (
     <nav className='py-8 flex items-center justify-between'>
