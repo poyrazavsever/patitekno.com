@@ -2,16 +2,16 @@ import React from 'react'
 
 const logos = [
   {
-    name: "youtube"
+    name: "youtube",
+    link: "https://www.youtube.com/@patitekno"
   },
   {
-    name: "linkedin"
+    name: "instagram",
+    link: "https://www.instagram.com/patitekno"
   },
   {
-    name: "instagram"
-  },
-  {
-    name : "github"
+    name : "github",
+    link: "https://www.github.com/poyrazavsever"
   }
 ]
 
@@ -47,9 +47,9 @@ const Footer = () => {
         <h3 className='text-base font-semibold text-primary'>Bizi Takip Et!</h3>
 
         {logos?.map(logo => (
-            <button className='px-4 py-3 rounded-md border border-neutral-300 flex items-center justify-center cursor-pointer hover:shadow-sm transition-all'>
+            <a href={logo.link} target='_blank' className='px-4 py-3 rounded-md border border-neutral-300 flex items-center justify-center cursor-pointer hover:shadow-sm transition-all'>
               <img src={`/Image/${logo.name}.png`} alt={`${logo.name} logo for footer`} className='w-16'/>
-            </button>
+            </a>
         ))}
 
       </div>
