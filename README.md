@@ -28,7 +28,7 @@ Pati Tekno’nun temel amacı; teknoloji, yazılım ve tasarım alanlarında iç
   <a href="https://www.instagram.com/patitekno" target="_blank">
     <img src="https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=E4405F&logoColor=white&labelColor=&style=for-the-badge" height="28" />
   </a>
-  <a href="https://youtube.com/patitekno" target="_blank">
+  <a href="https://youtube.com/@patitekno" target="_blank">
     <img src="https://img.shields.io/static/v1?message=YouTube&logo=youtube&label=&color=FF0000&logoColor=white&labelColor=&style=for-the-badge" height="28" />
   </a>
 </div>
