@@ -13,8 +13,8 @@ export default function Home() {
       <div>
         
           {/* Hero Section */}
-          <div className="relative flex items-center justify-center mt-24">
-            <img src="/Logos/LogoWithoutBg.png" alt="background logo" className='w-96 md:w-[600px] absolute top-0 left-1/4 opacity-5 -z-10'/>
+          <div className="relative flex items-center justify-center my-48">
+            <img src="/Logos/LogoWithoutBg.png" alt="background logo" className='w-96 md:w-[600px] absolute -top-32 left-1/4 opacity-5 -z-10'/>
 
             <div className="flex flex-col items-center gap-4 w-2/3 text-center">
               <h1 className="text-2xl font-semibold text-primary">Kendi Hızında Yazılım ve Tasarımı Öğren!</h1>
@@ -28,7 +28,7 @@ export default function Home() {
           </div>
 
           
-          <div className="flex flex-col items-start gap-4 mt-36">
+          <div className="flex flex-col items-start gap-6 mt-36">
             <h1 className="text-2xl font-semibold text-primary">Popüler Eğitim Serileri</h1>
             <EduCard />
           </div>

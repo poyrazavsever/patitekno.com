@@ -41,7 +41,7 @@ const Footer = () => {
   const lightStyle = "text-primary rounded-full p-2 text-lg cursor-pointer hover:bg-sky-200 transition-all";
 
   return (
-    <footer className='py-6 flex items-start justify-between'>
+    <footer className='pt-48 pb-16 flex items-start justify-between'>
 
       <div className='flex flex-col items-start gap-2 w-1/3'>
         <h3 className='text-base font-semibold text-primary'>Pati Tekno Hakkında</h3>
