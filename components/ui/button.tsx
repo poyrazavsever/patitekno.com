@@ -6,7 +6,7 @@ interface props{
     type:boolean;
 }
 
-const Button = ({Icon, name, type} : props) => {
+const Button = ({Icon = "", name = "button", type = false} : props) => {
   return (
     <>
       {
