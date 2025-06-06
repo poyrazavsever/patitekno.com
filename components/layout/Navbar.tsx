@@ -16,13 +16,13 @@ const Navbar = () => {
 
       <div className='flex items-center gap-6'>
 
+        <Button Icon={<IoMdSearch className='text-sm'/>} name='Ctrl K' type size='small'/>
+        
         <a href="/" className={navbarLink}>Ana Sayfa</a>
         <a href="/egitim" className={navbarLink}>Eğitimler</a>
         <a href="/kategoriler" className={navbarLink}>Kategoriler</a>
         <a href="/bülten" className={navbarLink}>Bülten</a>
         <a href="/iletisim" className={navbarLink}>İletişim</a>
-
-        <Button Icon={<IoMdSearch className='text-2xl'/>} name="Arama Yap" type/>
 
       </div>
 

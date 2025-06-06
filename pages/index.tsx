@@ -18,8 +18,8 @@ export default function Home() {
               <h1 className="text-2xl font-semibold text-primary">Kendi Hızında Yazılım ve Tasarımı Öğren!</h1>
               <p className="font-medium text-textColor">Patitekno, yazılım, tasarım ve teknoloji dünyasını senin için sadeleştiriyor. YouTube videolarımla eş zamanlı yayınlanan yazılı içeriklerle istediğin türden kaynaklara ulaşabilirsin. Son güncellemeleri kaçırmamak için kayıt olmayı unutma!</p>
               <div className="flex items-center gap-3">
-                <Button  name="Bültene Abone Ol" type={false} Icon/>
-                <Button name="Eğitimleri İncele" type={true} Icon/>
+                <Button  name="Bültene Abone Ol" type={false} Icon size="normal"/>
+                <Button name="Eğitimleri İncele" type={true} Icon size="normal"/>
               </div>
             </div>
 
