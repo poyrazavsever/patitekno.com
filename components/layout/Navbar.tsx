@@ -20,7 +20,6 @@ const Navbar = () => {
         
         <a href="/" className={navbarLink}>Ana Sayfa</a>
         <a href="/egitim" className={navbarLink}>Eğitimler</a>
-        <a href="/kategoriler" className={navbarLink}>Kategoriler</a>
         <a href="/bülten" className={navbarLink}>Bülten</a>
         <a href="/blog" className={navbarLink}>Blog</a>
         <a href="/iletisim" className={navbarLink}>İletişim</a>
