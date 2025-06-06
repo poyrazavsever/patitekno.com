@@ -2,6 +2,7 @@ import Button from "@/components/ui/button";
 import Head from "next/head";
 
 import EduCard from "@/components/shared/eduCard";
+import YoutubeData from "@/components/shared/youtubeData";
 
 export default function Home() {
   return (
@@ -32,6 +33,9 @@ export default function Home() {
             <h1 className="text-2xl font-semibold text-primary">Popüler Eğitim Serileri</h1>
             <EduCard />
           </div>
+
+
+          <YoutubeData />
 
 
       </div>
