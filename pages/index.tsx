@@ -1,6 +1,8 @@
 import Button from "@/components/ui/button";
 import Head from "next/head";
 
+import EduCard from "@/components/shared/eduCard";
+
 export default function Home() {
   return (
     <>
@@ -24,6 +26,13 @@ export default function Home() {
             </div>
 
           </div>
+
+          
+          <div className="flex flex-col items-start gap-4 mt-36">
+            <h1 className="text-2xl font-semibold text-primary">Popüler Eğitim Serileri</h1>
+            <EduCard />
+          </div>
+
 
       </div>
     </>
