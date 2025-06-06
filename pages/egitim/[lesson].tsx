@@ -1,15 +1,15 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-const Leson = () => {
+const Lesson = () => {
   const router = useRouter();
-  const { leson } = router.query;
+  const { lesson } = router.query;
 
   return (
     <div>
-      <h1>Ders: {leson}</h1>
+      <h1>Ders: {lesson}</h1>
     </div>
   );
 };
 
-export default Leson;
+export default Lesson;
