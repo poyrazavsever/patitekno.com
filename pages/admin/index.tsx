@@ -1,9 +1,18 @@
-import React from 'react'
+import { ReactElement } from "react";
+import { NextPageWithLayout } from "../_app";
+import AdminLayout from "@/components/layout/AdminLayout";
 
-const Admin = () => {
+const Admin : NextPageWithLayout = () => {
   return (
-    <div>Admin</div>
+    <div>
+      
+    </div>
   )
 }
+
+Admin.getLayout = function PageLayout(page: ReactElement) {
+  return <AdminLayout>{page}</AdminLayout>;
+};
+
 
 export default Admin
