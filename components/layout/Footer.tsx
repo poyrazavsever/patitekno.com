@@ -19,19 +19,24 @@ const logos = [
 
 const links = [
   {
-    name: "Ana Sayfa"
+    name: "Ana Sayfa",
+    link: "",
   },
   {
-    name: "Eğitimler"
+    name: "Eğitimler",
+    link: "egitim",
   },
   {
-    name: "Kategoriler"
+    name : "Bülten",
+    link: "/bulten"
   },
   {
-    name : "Bülten"
+    name: "Blog",
+    link: "/blog"
   },
   {
-    name : "İletişim"
+    name : "İletişim",
+    link: "iletisim"
   }
 ]
 
@@ -104,7 +109,7 @@ const Footer = () => {
         <h3 className='text-base font-semibold text-primary'>Navigasyon</h3>
 
         {links?.map(link => (
-          <a href="#" className='text-textColor font-medium hover:opacity-70 transition-all'>{link.name}</a>
+          <a href={`/${link.link}`} className='text-textColor font-medium hover:opacity-70 transition-all'>{link.name}</a>
         ))}
       </div>
 
