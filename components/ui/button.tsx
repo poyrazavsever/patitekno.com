@@ -13,7 +13,7 @@ const Button = ({Icon = "", name = "button", type = false, size = "normal"} : pr
       {
         type? (
           <button className={classNames(
-            'font-medium rounded-full flex items-center bg-transparent border border-primary text-primary hover:bg-sky-200 transition-all cursor-pointer',
+            'font-medium rounded-full flex items-center justify-center bg-transparent border border-primary text-primary hover:bg-sky-200 transition-all cursor-pointer text-center',
             {
               "px-4 py-2 gap-2" : size === "normal",
               "px-6 py-4 gap-3" : size === "large",
@@ -28,7 +28,7 @@ const Button = ({Icon = "", name = "button", type = false, size = "normal"} : pr
           </button>
         ) : (
           <button className={classNames(
-            'font-medium rounded-full flex items-center bg-primary text-background hover:opacity-80 transition-all cursor-pointer',
+            'font-medium rounded-full flex items-center justify-center bg-primary text-background hover:opacity-80 transition-all cursor-pointer',
             {
               "px-4 py-2 gap-2" : size === "normal",
               "px-6 py-4 gap-3" : size === "large",
