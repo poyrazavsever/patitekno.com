@@ -35,8 +35,10 @@ export default function Home() {
           </div>
 
 
-          <YoutubeData />
-
+          <div className="flex flex-col items-start gap-6 mt-36">
+            <h1 className="text-2xl font-semibold text-primary">Son Yüklenen Videolar</h1>
+            <YoutubeData />
+          </div>
 
       </div>
     </>

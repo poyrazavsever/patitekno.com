@@ -43,7 +43,7 @@ const YoutubeData = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
       {videos.map((video) => {
         const videoId = video.id.videoId;
         return (
