@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import {useState} from 'react'
 import { RiComputerLine, RiSunLine, RiMoonClearLine } from "react-icons/ri";
+import Button from '../ui/button';
 
 const logos = [
   {
@@ -14,29 +15,6 @@ const logos = [
   {
     name : "github",
     link: "https://www.github.com/poyrazavsever"
-  }
-]
-
-const links = [
-  {
-    name: "Ana Sayfa",
-    link: "",
-  },
-  {
-    name: "Eğitimler",
-    link: "egitim",
-  },
-  {
-    name : "Bülten",
-    link: "/bulten"
-  },
-  {
-    name: "Blog",
-    link: "/blog"
-  },
-  {
-    name : "İletişim",
-    link: "iletisim"
   }
 ]
 
@@ -118,12 +96,7 @@ const Footer = () => {
               placeholder="E-posta adresiniz"
               className='flex-1 px-4 py-2 border border-neutral-300 rounded-md text-sm text-textColor focus:outline-none focus:ring-2 focus:ring-primary'
             />
-            <button
-              type="submit"
-              className='px-4 py-2 bg-primary text-background font-semibold rounded-md hover:opacity-90 transition-all text-sm'
-            >
-              Katıl
-            </button>
+            <Button name="Katıl" Icon size="normal" type={false}/>
           </form>
 
         </div>
