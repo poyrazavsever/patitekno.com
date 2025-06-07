@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import type { NextPageWithLayout } from "./_app";
+import { ReactElement } from "react";
 
-const Login = () => {
+const Login : NextPageWithLayout = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -12,7 +14,7 @@ const Login = () => {
   }
 
   return (
-    <div className="mt-24 flex items-center justify-center">
+    <div className="h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-sm p-6 border border-neutral-200 rounded-lg"
@@ -58,4 +60,8 @@ const Login = () => {
   )
 }
 
-export default Login
+Login.getLayout = function PageLayout(page: ReactElement) {
+  return page;
+};
+
+export default Login;
