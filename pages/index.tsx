@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import EduCard from "@/components/shared/eduCard";
 import YoutubeData from "@/components/shared/youtubeData";
+import BlogData from "@/components/shared/blogData";
 
 export default function Home() {
   return (
@@ -38,6 +39,11 @@ export default function Home() {
           <div className="flex flex-col items-start gap-6 mt-36">
             <h1 className="text-2xl font-semibold text-primary">Son Yüklenen Videolar</h1>
             <YoutubeData />
+          </div>
+
+          <div className="flex flex-col items-start gap-4 mt-36">
+            <h1 className="text-2xl font-semibold text-primary">Son Yazılar</h1>
+            <BlogData/>
           </div>
 
       </div>

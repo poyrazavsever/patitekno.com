@@ -1,5 +1,6 @@
 import EduCard from '@/components/shared/eduCard';
 import YoutubeData from '@/components/shared/youtubeData';
+import BlogData from '@/components/shared/blogData';
 import Button from '@/components/ui/button';
 
 export default function Bulten() {
@@ -36,6 +37,11 @@ export default function Bulten() {
       <div className="flex flex-col items-start gap-6 mt-36">
         <h1 className="text-2xl font-semibold text-primary">Son Eğitimlerimizi Kaçırma!</h1>
         <EduCard />
+      </div>
+
+      <div className="flex flex-col items-start gap-4 mt-36">
+          <h1 className="text-2xl font-semibold text-primary">Son Yazılarımızı Kaçırma!</h1>
+          <BlogData/>
       </div>
 
       {/* Yakında Podcast Serimi buraya koymak istiyorum. */ }
