@@ -30,7 +30,7 @@ const blogList: BlogItem[] = [
       date: "03 Haziran 2025",
       imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgaleri8.uludagsozluk.com%2F446%2Fresim-cizmek_698899.jpg&f=1&nofb=1&ipt=0201288d9417837cfb5faf5a31579819dcec485da99642dc6cfc5f301265aa33",
     },
-  ];
+];
 
   return (
 
