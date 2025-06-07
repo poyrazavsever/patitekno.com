@@ -105,13 +105,28 @@ const Footer = () => {
       </div>
 
 
-      <div className='flex flex-col items-start gap-2'>
-        <h3 className='text-base font-semibold text-primary'>Navigasyon</h3>
+      <div className='w-full md:w-1/3'>
 
-        {links?.map(link => (
-          <a href={`/${link.link}`} className='text-textColor font-medium hover:opacity-70 transition-all'>{link.name}</a>
-        ))}
-      </div>
+          <h3 className='text-base font-semibold text-primary'>Bültenimize Katıl</h3>
+          
+          <p className='text-sm text-textColor mb-2'>Yeni videolar, blog yazıları ve eğitimlerden ilk sen haberdar ol!</p>
+          
+          <form className='flex w-full gap-2 mt-2'>
+            <input
+              type="email"
+              required
+              placeholder="E-posta adresiniz"
+              className='flex-1 px-4 py-2 border border-neutral-300 rounded-md text-sm text-textColor focus:outline-none focus:ring-2 focus:ring-primary'
+            />
+            <button
+              type="submit"
+              className='px-4 py-2 bg-primary text-background font-semibold rounded-md hover:opacity-90 transition-all text-sm'
+            >
+              Katıl
+            </button>
+          </form>
+
+        </div>
 
     </footer>
   )
