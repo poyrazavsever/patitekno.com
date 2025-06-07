@@ -1,7 +1,6 @@
-import {useState} from 'react'
-import { useRouter } from 'next/router';
-import Sidebar from "../../components/layout/Sibebar"
+import classNames from "classnames";
 
+// deneme icin
 const lessons = [
   {
     id: 0,
@@ -175,26 +174,35 @@ alt, aria, label for gibi etiketlerle erişilebilirlik artırılır.
   }
 ]
 
-const Lesson = () => {
-  const router = useRouter();
-  const { lesson } = router.query;
+interface props {
+  section:number;
+  setSection: any;
+}
 
-  const [section, setSection] = useState(0)
-
-  console.log(section, lessons[section].id);
+const Sibebar = ({section, setSection} : props) => {
 
   return (
-    <div>
-      <Sidebar section={section} setSection={setSection}/>
+    <aside className='overflow-auto max-h-screen h-screen fixed left-0 top-0 py-6 border border-neutral-300 w-72'>
+        <h3 className='text-lg font-semibold text-primary px-6'>HTML 101 Ders Notları</h3>
 
-      <h1>Ders: {lesson}</h1>
-      
-      {
-        <h1>Ders ID: {lessons[section].id}</h1>
-      }
+        <div className='flex flex-col items-start gap-2 mt-4'>
+            {
+                lessons?.map((lesson) => (
+                    <button onClick={() => setSection(lesson.id)} className={classNames(
+                      'w-full px-6 py-1 cursor-pointer hover:bg-primary hover:text-background transition-all',
+                      {
+                        "bg-primary text-background" : section === lesson.id
+                      }
+                    )}>
+                        <span className='text-left line-clamp-1'>{lesson.title}</span>
+                    </button>
+                ))
+            }
 
-    </div>
-  );
-};
+        </div>
 
-export default Lesson;
+    </aside>
+  )
+}
+
+export default Sibebar
