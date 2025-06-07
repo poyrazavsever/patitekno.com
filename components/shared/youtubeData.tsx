@@ -9,6 +9,7 @@ type VideoItem = {
   };
   snippet: {
     title: string;
+    description: string;
     thumbnails: {
       medium: {
         url: string;
@@ -23,7 +24,7 @@ const YoutubeData = () => {
 
   const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY!;
   const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID!;
-  const maxResults = 3;
+  const maxResults = 2;
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -46,16 +47,18 @@ const YoutubeData = () => {
       {videos.map((video) => {
         const videoId = video.id.videoId;
         return (
-          <div key={videoId} className="border p-4 rounded-lg shadow-md">
+
+          <div key={videoId} className="border border-neutral-300 p-2 rounded-md">
             <iframe
-              className="w-full aspect-video rounded"
+              className="w-full aspect-video rounded-md"
               src={`https://www.youtube.com/embed/${videoId}`}
               title={video.snippet.title}
               allowFullScreen
             />
             <h3 className="mt-2 font-semibold text-lg text-primary">{video.snippet.title}</h3>
-            <p className="text-sm text-textColor">{video.snippet.publishedAt.slice(0, 10)}</p>
+            <p className="text-sm text-textColor line-clamp-3">{video.snippet.description}</p>
           </div>
+
         );
       })}
     </div>
