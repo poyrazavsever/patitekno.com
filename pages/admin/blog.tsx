@@ -6,6 +6,7 @@ import classNames from "classnames";
 import { MdEdit, MdDelete, MdLink } from "react-icons/md";
 import AddBlog from "@/admin/addBlog";
 import Categories from "@/admin/categories";
+import AddCategory from "@/admin/addCategory";
 
 type BlogItem = {
   title: string;
@@ -111,6 +112,12 @@ const AdminBlog : NextPageWithLayout = () => {
             {
                 currentTab === 2 ? (
                     <Categories />
+                ) : ""
+            }
+
+            {
+                currentTab === 3 ? (
+                    <AddCategory/>
                 ) : ""
             }
 
