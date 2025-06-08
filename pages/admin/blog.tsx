@@ -4,6 +4,7 @@ import AdminLayout from "@/components/layout/AdminLayout"
 import classNames from "classnames";
 
 import { MdEdit, MdDelete, MdLink } from "react-icons/md";
+import AddBlog from "@/admin/addBlog";
 
 type BlogItem = {
   title: string;
@@ -97,6 +98,12 @@ const AdminBlog : NextPageWithLayout = () => {
                             }
                         </div>
                     </>
+                ) : ""
+            }
+
+            {
+                currentTab === 1 ? (
+                    <AddBlog />
                 ) : ""
             }
 
