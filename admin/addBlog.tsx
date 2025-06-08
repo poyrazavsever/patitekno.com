@@ -25,7 +25,7 @@ const BlogEkle = () => {
 
   return (
     <div className="max-w-3xl p-6 border border-neutral-200 rounded-md mt-10">
-      <h1 className="text-2xl font-semibold mb-6">Yeni Blog Ekle</h1>
+      <h1 className="text-2xl font-semibold mb-6 text-primary">Yeni Blog Ekle</h1>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block mb-1 text-sm font-medium text-textColor">Başlık</label>
