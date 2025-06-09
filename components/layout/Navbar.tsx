@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from '../ui/button'
 import { IoMdSearch } from "react-icons/io"
 import { IoCloseSharp, IoSearch } from "react-icons/io5";
@@ -7,6 +7,20 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   const navbarLink = "text-base font-medium text-textColor hover:opacity-70 transition-all"
+
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
 
   return (
     <>
