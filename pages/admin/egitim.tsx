@@ -4,6 +4,7 @@ import AdminLayout from '@/components/layout/AdminLayout'
 import classNames from 'classnames'
 import { MdEdit, MdDelete, MdLink } from "react-icons/md"
 import AddLessonPost from '@/admin/addLessonPost'
+import AddLesson from '@/admin/addLesson'
 
 const AdminLesson: NextPageWithLayout = () => {
   const [currentTab, setCurrentTab] = useState(0)
@@ -72,6 +73,8 @@ const AdminLesson: NextPageWithLayout = () => {
       )}
 
       {currentTab === 1 && <AddLessonPost />}
+
+      {currentTab === 2 && <AddLesson />}
 
     </div>
   )
