@@ -4,9 +4,9 @@ import AdminLayout from "@/components/layout/AdminLayout"
 import classNames from "classnames";
 
 import { MdEdit, MdDelete, MdLink } from "react-icons/md";
-import AddBlog from "@/admin/addBlog";
-import Categories from "@/admin/categories";
-import AddCategory from "@/admin/addCategory";
+import AddBlog from "@/components/admin/addBlog";
+import Categories from "@/components/admin/categories";
+import AddCategory from "@/components/admin/addCategory";
 
 type BlogItem = {
   title: string;
