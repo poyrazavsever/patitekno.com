@@ -1,43 +1,29 @@
 import React from 'react'
+import Link from 'next/link'
 
-const EduCard = () => {
+type Lesson = {
+  title: string
+  icon_name: string
+  slug: string
+}
 
-  /* Deneme İçin*/
-  const eduList = [
-    {
-      name: "HTML 101",
-      iconName : "html",
-      link: "html"
-    },
-    {
-      name: "CSS 101",
-      iconName : "css",
-      link: "css"
-    },
-    {
-      name: "Javascript 101",
-      iconName : "js",
-      link: "js"
-    },
-    
-    {
-      name: "Typescript 101",
-      iconName : "ts",
-      link: "ts"
-    }
-  ]
+type EduCardProps = {
+  lesson: Lesson
+}
 
+const EduCard = ({ lesson }: EduCardProps) => {
   return (
-    <div className='w-full flex flex-wrap items-center justify-between gap-8'>
-      {
-        eduList?.map((edu) => (
-          <a href={`/egitim/${edu.link}`} className='w-fit flex flex-col items-center gap-4 p-8 rounded-md border border-neutral-300 hover:shadow-sm transition-all'>
-            <img src={`https://skillicons.dev/icons?i=${edu.iconName}`} alt="edu logo for card" className='w-32 h-32'/>
-            <span className='font-medium text-textColor'>{edu.name}</span>
-          </a>
-        ))
-      }
-    </div>
+    <Link 
+      href={`/egitim/${lesson.slug}`} 
+      className='flex flex-col items-center gap-4 p-6 rounded-md border border-neutral-200 hover:shadow-xs transition-all'
+    >
+      <img 
+        src={`https://skillicons.dev/icons?i=${lesson.icon_name}`} 
+        alt={`${lesson.title} icon`} 
+        className='w-24 h-24'
+      />
+      <span className='font-medium text-textColor'>{lesson.title}</span>
+    </Link>
   )
 }
 

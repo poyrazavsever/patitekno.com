@@ -20,10 +20,20 @@ type BlogPost = {
   };
 };
 
+type Lesson = {
+  id: number;
+  title: string;
+  icon_name: string;
+  slug: string;
+};
+
 export default function Home() {
 
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [lessons, setLessons] = useState<Lesson[]>([]);
   const [loading, setLoading] = useState(true);
+  const [lessonsLoading, setLessonsLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -58,6 +68,25 @@ export default function Home() {
     fetchPosts();
   }, []);
 
+  useEffect(() => {
+    const fetchLessons = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('lessons')
+          .select('id, title, icon_name, slug')
+          .order('title');
+
+        if (error) throw error;
+        setLessons(data || []);
+      } catch (error) {
+        console.error('Error fetching lessons:', error);
+      } finally {
+        setLessonsLoading(false);
+      }
+    };
+
+    fetchLessons();
+  }, []);
 
   return (
     <>
@@ -84,9 +113,17 @@ export default function Home() {
 
 
         <div className="flex flex-col items-start gap-6 mt-36">
-          <h1 className="text-2xl font-semibold text-primary">Popüler Eğitim Serileri</h1>
-          <EduCard />
-        </div>
+        <h1 className="text-2xl font-semibold text-primary">Popüler Eğitim Serileri</h1>
+        {lessonsLoading ? (
+          <div>Yükleniyor...</div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+            {lessons.map((lesson) => (
+              <EduCard key={lesson.id} lesson={lesson} />
+            ))}
+          </div>
+        )}
+      </div>
 
 
         <div className="flex flex-col items-start gap-6 mt-36">
