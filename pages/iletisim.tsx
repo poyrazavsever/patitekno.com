@@ -1,5 +1,8 @@
-import React from 'react'
-import Button from '@/components/ui/button'
+import React, { useState } from 'react'
+import { supabase } from '@/utils/supabaseClient'
+import { toast } from 'react-hot-toast'
+import RecaptchaModal from '@/components/shared/reCaptcha'
+
 
 const logos = [
   {
@@ -12,11 +15,64 @@ const logos = [
   },
   {
     name : "github",
-    link: "https://www.github.com/poyrazavsever"
+    link: "https://www.github.com/organization/patitekno"
   }
 ]
 
 const Iletisim = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsModalOpen(true)
+  }
+
+  const handleVerify = async (token: string | null) => {
+    if (!token) {
+      toast.error('Lütfen robot olmadığınızı doğrulayın')
+      return
+    }
+
+    setLoading(true)
+    try {
+      const { error } = await supabase
+        .from('messages')
+        .insert([
+          {
+            name: formData.name || "Anonim",
+            email: formData.email,
+            message: formData.message,
+            created_at: new Date().toISOString()
+          }
+        ])
+
+      if (error) throw error
+
+      toast.success('Mesajınız başarıyla gönderildi!')
+      setFormData({ name: '', email: '', message: '' })
+    } catch (error) {
+      console.error('Error sending message:', error)
+      toast.error('Mesaj gönderilirken bir hata oluştu')
+    } finally {
+      setLoading(false)
+      setIsModalOpen(false)
+    }
+  }
+
   return (
     <section className='pt-24 text-textColor'>
 
@@ -28,57 +84,55 @@ const Iletisim = () => {
         </p>
       </div>
 
-      <div className='items-start justify-between grid grid-cols-1 md:grid-cols-2 gap-16'>
-
-        {/* Form */}
-        <form className='flex flex-col gap-4' onSubmit={(e) => e.preventDefault()}>
+       <div className='items-start justify-between grid grid-cols-1 md:grid-cols-2 gap-16'>
+        <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
           <input
             type='text'
+            name='name'
             placeholder='Adınız (Opsiyonel)'
-            required
+            value={formData.name}
+            onChange={handleChange}
             className='border border-neutral-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm'
           />
 
           <input
             type='email'
+            name='email'
             placeholder='E-posta adresiniz'
             required
+            value={formData.email}
+            onChange={handleChange}
             className='border border-neutral-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm'
           />
 
           <textarea
+            name='message'
             rows={6}
             placeholder='Mesajınız'
             required
+            value={formData.message}
+            onChange={handleChange}
             className='border border-neutral-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm resize-none'
           />
 
-          <Button name="Gönder" Icon size="normal" type={false}/>
+          <button 
+            type="submit"
+            disabled={loading}
+            className="w-full md:w-auto px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+          >
+            {loading ? "Gönderiliyor..." : "Gönder"}
+          </button>
 
         </form>
 
-        {/* Sosyal Medya + İletişim Bilgileri */}
-        <div className='flex flex-col justify-center items-start gap-2'>
-
-          <h3 className='font-semibold text-base text-primary'>Sosyal Medyada Bizi Takip Et</h3>
-          <div className='flex gap-4'>
-
-            {logos?.map(logo => (
-                <a href={logo.link} target='_blank' className='px-4 py-3 rounded-md border border-neutral-300 flex items-center justify-center cursor-pointer hover:shadow-sm transition-all'>
-                    <img src={`/Image/${logo.name}.png`} alt={`${logo.name} logo for footer`} className='w-16'/>
-                </a>
-            ))}
-          </div>
-
-          <div className='mt-6'>
-            <h4 className='font-semibold text-base text-primary'>Mail ile ulaşmak istersen:</h4>
-            <a href='mailto:info@patitekno.com' className='text-textColor hover:underline'>info@patitekno.com</a>
-          </div>
-
-        </div>
-
+        {/* ...existing social media section... */}
       </div>
-      
+
+      <RecaptchaModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onVerify={handleVerify}
+      />
     </section>
   )
 }
