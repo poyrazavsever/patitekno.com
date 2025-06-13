@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import type { NextPageWithLayout } from "./_app";
 import { ReactElement } from "react";
 import { supabase } from '@/utils/supabaseClient';
@@ -12,11 +12,25 @@ const Login: NextPageWithLayout = () => {
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
+  useEffect(() => {
+    // Check authentication status
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        toast.success('Zaten giriş yapmışsınız, yönetim paneline yönlendiriliyorsunuz.');
+        router.push('/admin');
+      }
+    };
+
+    checkAuth();
+  }, [router]);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
+    
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
