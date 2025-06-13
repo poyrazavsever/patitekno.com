@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import MarkdownIt from 'markdown-it'
 import 'react-markdown-editor-lite/lib/index.css'
 import { supabase } from '@/utils/supabaseClient'
 import { toast } from 'react-hot-toast'
 
-// SSR uyumluluğu için dinamik import
+const mdParser = new MarkdownIt()
+
 const MdEditor = dynamic(() => import('react-markdown-editor-lite'), { ssr: false })
+
 
 type Lesson = {
   id: number
@@ -115,8 +118,18 @@ const AddLessonPost = () => {
         <MdEditor
           style={{ height: '300px' }}
           value={content}
-          renderHTML={(text) => <div dangerouslySetInnerHTML={{ __html: text }} />}
+          renderHTML={text => mdParser.render(text)}
           onChange={handleEditorChange}
+          className="border border-gray-300 rounded"
+          view={{ menu: true, md: true, html: true }}
+          canView={{
+            menu: true,
+            md: true,
+            html: true,
+            both: true,
+            fullScreen: true,
+            hideMenu: true
+          }}
         />
       </div>
 
