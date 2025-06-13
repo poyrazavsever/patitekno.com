@@ -1,41 +1,81 @@
-import React from "react";
-import BlogData from "@/components/shared/blogData";
+import { useEffect, useState } from "react";
+import BlogCard from "@/components/shared/blogCard";
+import { supabase } from "@/utils/supabaseClient";
 
 
-type BlogItem = {
+type BlogPost = {
+  id: number;
   title: string;
   description: string;
-  date: string;
-  imageUrl?: string;
+  slug: string;
+  created_at: string;
+  category: {
+    name: string;
+  };
 };
 
 const BlogList = () => {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const blogList: BlogItem[] = [
-    {
-      title: "HTML 101",
-      description: "HTML'in temellerini ve web'deki rolünü öğrenin.",
-      date: "07 Haziran 2025",
-      imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgaleri8.uludagsozluk.com%2F446%2Fresim-cizmek_698899.jpg&f=1&nofb=1&ipt=0201288d9417837cfb5faf5a31579819dcec485da99642dc6cfc5f301265aa33",
-    },
-    {
-      title: "CSS ile Stil Verme",
-      description: "Web sitenizi güzelleştirmek için CSS'in gücünü keşfedin.",
-      date: "05 Haziran 2025",
-      imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgaleri8.uludagsozluk.com%2F446%2Fresim-cizmek_698899.jpg&f=1&nofb=1&ipt=0201288d9417837cfb5faf5a31579819dcec485da99642dc6cfc5f301265aa33",
-    },
-    {
-      title: "JavaScript'e Giriş",
-      description: "Sayfanıza etkileşim kazandırmak artık çok kolay!",
-      date: "03 Haziran 2025",
-      imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgaleri8.uludagsozluk.com%2F446%2Fresim-cizmek_698899.jpg&f=1&nofb=1&ipt=0201288d9417837cfb5faf5a31579819dcec485da99642dc6cfc5f301265aa33",
-    },
-  ];
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('blog_posts')
+          .select(`
+            id,
+            title,
+            description,
+            slug,
+            created_at,
+            category:categories(name)
+          `)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        setPosts(
+          (data || []).map((post: any) => ({
+            ...post,
+            category: Array.isArray(post.category) ? post.category[0] : post.category
+          }))
+        );
+      } catch (error) {
+        console.error('Blog yazıları yüklenirken hata:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
     <div className="flex flex-col items-start gap-4 mt-16">
-      <h1 className="text-2xl font-semibold text-primary">Son Yazılar</h1>
-      <BlogData/>
+      <h1 className="text-2xl font-semibold text-primary">Blog Yazıları</h1>
+
+      {loading ? (
+        <div>Yükleniyor...</div>
+      ) : posts.length === 0 ? (
+        <div>Henüz blog yazısı bulunmuyor.</div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          {posts.map((post) => (
+            <BlogCard
+              key={post.id}
+              title={post.title}
+              description={post.description}
+              date={new Date(post.created_at).toLocaleDateString('tr-TR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+              slug={post.slug}
+              category={post.category?.name}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
