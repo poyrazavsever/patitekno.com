@@ -1,200 +1,124 @@
-import {useState} from 'react'
-import { useRouter } from 'next/router';
-import Sidebar from "../../components/layout/Sibebar"
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import ReactMarkdown from 'react-markdown'
+import { supabase } from '@/utils/supabaseClient'
+import { toast } from 'react-hot-toast'
+import Sidebar from '@/components/layout/Sibebar'
+import { FaYoutube } from 'react-icons/fa'
 
-const lessons = [
-  {
-    id: 0,
-    lessonName: "html",
-    title: "Temel HTML Yapısı",
-    content: `
-# Temel HTML Yapısı
-<!DOCTYPE html>, <html>, <head>, <body> gibi temel etiketlerle HTML belgesi başlatılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 1,
-    lessonName: "html",
-    title: "Metin Etiketleri",
-    content: `
-# Metin Etiketleri
-<h1>-<h6>, <span>, <br>, <hr>, <strong>, <em> gibi etiketler metin düzeni için kullanılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 2,
-    lessonName: "html",
-    title: "Linkler",
-    content: `
-# Linkler
-<a> etiketi ile hem sayfa içi hem de site dışı bağlantılar oluşturabilirsiniz.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 3,
-    lessonName: "html",
-    title: "Görseller",
-    content: `
-# Görseller
-<img> etiketi ile resim eklenir. SEO için alt özelliği mutlaka kullanılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 4,
-    lessonName: "html",
-    title: "Listeler",
-    content: `
-# Listeler
-<ul>, <ol> ve <dl> etiketleri ile farklı türde listeler oluşturulur.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 5,
-    lessonName: "html",
-    title: "Tablolar",
-    content: `
-# Tablolar
-<table>, <tr>, <td>, <th> gibi etiketlerle veri tablosu yapılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 6,
-    lessonName: "html",
-    title: "Formlara Giriş",
-    content: `
-# Formlara Giriş
-<form>, <input>, <label>, <button> gibi temel form etiketleri anlatılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 7,
-    lessonName: "html",
-    title: "Form Elemanları II",
-    content: `
-# Form Elemanları II
-<select>, <option>, <textarea>, checkbox ve radio kullanımı detaylandırılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 8,
-    lessonName: "html",
-    title: "HTML5 Semantic Etiketleri",
-    content: `
-# HTML5 Semantic Etiketleri
-<header>, <nav>, <main>, <section>, <footer> gibi yapısal etiketler tanıtılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 9,
-    lessonName: "html",
-    title: "Medya Kullanımı",
-    content: `
-# Medya Kullanımı
-<audio>, <video>, <source>, controls gibi medya öğeleri tanıtılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 10,
-    lessonName: "html",
-    title: "Yapılandırılmış Veri",
-    content: `
-# Yapılandırılmış Veri
-<iframe>, <embed>, <object> etiketleriyle harici veri gösterimi.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 11,
-    lessonName: "html",
-    title: "Karakter Kodlaması ve Özel Karakterler",
-    content: `
-# Karakter Kodlaması ve Özel Karakterler
-&nbsp;, &copy;, &lt;, &gt; gibi özel HTML karakterleri anlatılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 12,
-    lessonName: "html",
-    title: "Meta Etiketleri",
-    content: `
-# Meta Etiketleri
-<meta charset>, viewport, description, keywords gibi etiketler SEO açısından önemlidir.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 13,
-    lessonName: "html",
-    title: "Script ve Stil Bağlama",
-    content: `
-# Script ve Stil Bağlama
-<style>, <link>, <script> ile CSS ve JavaScript bağlantıları sağlanır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 14,
-    lessonName: "html",
-    title: "Input Validasyonu",
-    content: `
-# Input Validasyonu
-required, type, min, max, pattern gibi input doğrulama özellikleri kullanılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 15,
-    lessonName: "html",
-    title: "div ve span Kullanımı",
-    content: `
-# div ve span Kullanımı
-<div> blok, <span> satır içi elemanlardır. Sayfa düzeni için kullanılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  },
-  {
-    id: 16,
-    lessonName: "html",
-    title: "HTML’de Erişilebilirlik (Accessibility)",
-    content: `
-# Erişilebilirlik
-alt, aria, label for gibi etiketlerle erişilebilirlik artırılır.
-    `,
-    videoLink: "https://www.youtube.com"
-  }
-]
+type LessonPost = {
+  id: number
+  title: string
+  content: string
+  video_link: string
+  lesson_id: number
+  created_at: string
+}
 
 const Lesson = () => {
-  const router = useRouter();
-  const { lesson } = router.query;
+  const router = useRouter()
+  const { lesson } = router.query
+  console.log('Lesson slug:', lesson)
+  
+  const [posts, setPosts] = useState<LessonPost[]>([])
+  const [selectedPost, setSelectedPost] = useState<LessonPost | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  const [section, setSection] = useState(0)
+  useEffect(() => {
+    const fetchPosts = async () => {
+      if (!router.isReady || !lesson) return
 
-  console.log(section, lessons[section].id);
+      try {
+        // First get the lesson_id from lessons table
+        const { data: lessonData, error: lessonError } = await supabase
+          .from('lessons')
+          .select('id')
+          .eq('slug', lesson)
+          .single()
+
+        if (lessonError) throw lessonError
+
+        // Then get all posts for this lesson
+        const { data: postsData, error: postsError } = await supabase
+          .from('lesson_posts')
+          .select('*')
+          .eq('lesson_id', lessonData.id)
+          .order('created_at')
+
+        if (postsError) throw postsError
+
+        setPosts(postsData)
+        if (postsData && postsData.length > 0) {
+          setSelectedPost(postsData[0])
+        }
+      } catch (error) {
+        console.error('Error fetching posts:', error)
+        toast.error('Dersler yüklenirken bir hata oluştu')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPosts()
+  }, [lesson, router.isReady])
 
   return (
-    <div>
-      <Sidebar section={section} setSection={setSection}/>
+    <div className="flex">
+      <Sidebar 
+        posts={posts}
+        selectedPost={selectedPost}
+        onSelectPost={setSelectedPost}
+        lessonTitle={lesson as string}
+      />
 
-      <h1>Ders: {lesson}</h1>
-      
-      {
-        <h1>Ders ID: {lessons[section].id}</h1>
-      }
+      <main className="lex-1 min-h-screen py-16 w-full">
+        {selectedPost ? (
+          <div className="w-full">
 
+            <div className="mb-6 flex items-center justify-between">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                {selectedPost.title}
+              </h1>
+              {selectedPost.video_link && (
+                <a
+                  href={selectedPost.video_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors duration-200 shadow-sm"
+                >
+                  <FaYoutube />
+                  Video Dersini İzle
+                </a>
+              )}
+            </div>
+
+            <div className='flex items-center justify-between'>
+              <p className="text-sm text-gray-500 mb-4">
+                {new Date(selectedPost.created_at).toLocaleDateString('tr-TR', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </p>
+              <p className="text-sm text-gray-500 mb-4">
+                {selectedPost.content.length} karakter
+              </p>
+            </div>
+
+            <hr className='border border-neutral-300 '/>
+            
+            <div className="md-custom mt-8">
+              <ReactMarkdown>{selectedPost.content}</ReactMarkdown>
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center h-full text-gray-500">
+            Bu derse ait içerik bulunamadı
+          </div>
+        )}
+      </main>
     </div>
-  );
-};
+  )
+}
 
-export default Lesson;
+export default Lesson
