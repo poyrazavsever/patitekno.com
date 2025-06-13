@@ -1,9 +1,53 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react'
 import dynamic from 'next/dynamic'
+import { supabase } from '@/utils/supabaseClient'
+import toast from 'react-hot-toast'
 import 'react-markdown-editor-lite/lib/index.css'
 
 // Dinamik import - SSR hatası olmaması için
 const MdEditor = dynamic(() => import('react-markdown-editor-lite'), { ssr: false })
+
+const skillIcons = [
+  'html',
+  'css',
+  'js',
+  'ts',
+  'react',
+  'nextjs',
+  'nodejs',
+  'express',
+  'mongodb',
+  'postgres',
+  'tailwind',
+  'git',
+  'github',
+  'vscode',
+  'redux',
+  'docker',
+  'mysql',
+  'firebase',
+  'supabase',
+  'graphql',
+  'sass',
+  'webpack',
+  'vite',
+  'linux',
+  'figma',
+  'python',
+  'django',
+  'jest',
+  'c#',
+  'dotnet',
+  'java',
+  'androidstudio',
+  'flutter',
+  'kotlin',
+  'azure',
+  'aws',
+] as const
+
+
+type SkillIcon = typeof skillIcons[number]
 
 // Tipler
 interface ExtraLink {
@@ -16,6 +60,8 @@ const AddLesson: React.FC = () => {
   const [content, setContent] = useState<string>('')
   const [videoLink, setVideoLink] = useState<string>('')
   const [extraLinks, setExtraLinks] = useState<ExtraLink[]>([{ label: '', url: '' }])
+  const [loading, setLoading] = useState(false)
+  const [iconName, setIconName] = useState<SkillIcon>('html')
 
   const handleEditorChange = ({ text }: { text: string }) => {
     setContent(text)
@@ -39,21 +85,51 @@ const AddLesson: React.FC = () => {
     setExtraLinks(extraLinks.filter((_, i) => i !== index))
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    setLoading(true)
 
-    const lessonData = {
-      title,
-      content,
-      video_link: videoLink,
-      extra_links: extraLinks,
+    try {
+      const slug = title
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '')
+
+      const { data, error } = await supabase
+        .from('lessons')
+        .insert([
+          {
+            title,
+            content,
+            video_link: videoLink,
+            extra_links: extraLinks,
+            icon_name: iconName, // Add icon name
+            slug,
+            created_at: new Date().toISOString(),
+          }
+        ])
+        .select()
+
+      if (error) throw error
+
+      toast.success('Ders başarıyla eklendi!')
+
+      // Reset form
+      setTitle('')
+      setContent('')
+      setVideoLink('')
+      setExtraLinks([{ label: '', url: '' }])
+      setIconName('html') // Reset icon
+
+    } catch (error: any) {
+      toast.error('Ders eklenirken bir hata oluştu')
+      console.error('Ders ekleme hatası:', error.message)
+    } finally {
+      setLoading(false)
     }
-
-    console.log('Yeni Ders:', lessonData)
-    alert('Ders başarıyla eklendi.')
-
-    // Supabase gönderimi vs. burada yapılabilir
   }
+
 
   return (
     <form
@@ -80,6 +156,30 @@ const AddLesson: React.FC = () => {
           renderHTML={(text) => <div>{text}</div>}
           onChange={handleEditorChange}
         />
+      </div>
+
+      <div>
+        <label className="block mb-1 font-semibold">Teknoloji İkonu</label>
+        <div className="flex flex-wrap gap-2 p-2 border border-neutral-300 rounded">
+          {skillIcons.map((icon) => (
+            <button
+              key={icon}
+              type="button"
+              onClick={() => setIconName(icon)}
+              className={`p-2 rounded hover:bg-sky-100 transition-all ${iconName === icon ? 'bg-sky-100 ring-2 ring-primary' : ''
+                }`}
+            >
+              <img
+                src={`https://skillicons.dev/icons?i=${icon}`}
+                alt={icon}
+                className="w-8 h-8"
+              />
+            </button>
+          ))}
+        </div>
+        <p className="text-sm text-gray-500 mt-1">
+          Seçili: {iconName}
+        </p>
       </div>
 
       <div>
@@ -135,9 +235,10 @@ const AddLesson: React.FC = () => {
 
       <button
         type="submit"
+        disabled={loading}
         className="bg-primary rounded-full text-white font-semibold py-2 hover:opacity-80 cursor-pointer transition"
       >
-        Dersi Kaydet
+        {loading ? 'Ekleniyor...' : 'Dersi Kaydet'}
       </button>
     </form>
   )
