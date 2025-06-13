@@ -74,7 +74,8 @@ export default function Home() {
         const { data, error } = await supabase
           .from('lessons')
           .select('id, title, icon_name, slug')
-          .order('title');
+          .order('created_at', { ascending: false })
+          .limit(3);
 
         if (error) throw error;
         setLessons(data || []);
