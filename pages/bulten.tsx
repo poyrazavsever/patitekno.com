@@ -38,7 +38,12 @@ export default function Bulten() {
           .limit(3);
 
         if (error) throw error;
-        setPosts(data || []);
+        setPosts(
+          (data || []).map((post: any) => ({
+            ...post,
+            category: Array.isArray(post.category) ? post.category[0] : post.category
+          }))
+        );
       } catch (error) {
         console.error('Blog yazıları yüklenirken hata:', error);
       } finally {
