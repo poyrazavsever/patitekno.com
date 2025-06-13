@@ -1,25 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import Button from '../ui/button'
-import { IoMdSearch } from "react-icons/io"
-import { IoCloseSharp, IoSearch } from "react-icons/io5";
-
 const Navbar = () => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   const navbarLink = "text-base font-medium text-textColor hover:opacity-70 transition-all"
-
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        setIsSearchOpen(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
 
   return (
@@ -31,13 +12,6 @@ const Navbar = () => {
         </div>
 
         <div className='flex items-center gap-6'>
-          <Button 
-            Icon={<IoMdSearch className='text-sm' />} 
-            name='Ctrl K' 
-            type 
-            size='small' 
-            onClick={() => setIsSearchOpen(true)} 
-          />
           
           <a href="/" className={navbarLink}>Ana Sayfa</a>
           <a href="/egitim" className={navbarLink}>Eğitimler</a>
@@ -47,35 +21,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {
-        isSearchOpen && (
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex justify-center items-start pt-32 z-50">
-            <div className="bg-white w-full max-w-3xl rounded-xl shadow-lg py-6 pl-6 pr-12 mx-4 relative">
-              
-              <div className="flex items-center gap-3 border border-gray-300 rounded px-4 py-2 focus-within:ring-2 focus-within:ring-primary">
-                <IoSearch className="text-gray-400 text-xl" />
-                <input
-                  type="text"
-                  placeholder="Ders, blog, kategori ara..."
-                  className="w-full focus:outline-none text-sm"
-                  autoFocus
-                  onKeyDown={(e) => {
-                    if (e.key === 'Escape') setIsSearchOpen(false);
-                  }}
-                />
-              </div>
-
-              <button
-                onClick={() => setIsSearchOpen(false)}
-                className="absolute top-2 right-2 text-red-400 hover:text-red-600 transition-colors cursor-pointer"
-                aria-label="Kapat"
-              >
-                <IoCloseSharp className="text-xl" />
-              </button>
-            </div>
-          </div>
-        )
-      }
       
     </>
   )
