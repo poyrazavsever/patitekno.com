@@ -8,6 +8,7 @@ import AddLesson from '@/components/admin/addLesson'
 import Modal from '@/components/shared/modal'
 import { supabase } from '@/utils/supabaseClient'
 import { toast } from 'react-hot-toast'
+import LessonsPosts from '@/components/admin/lessonPosts'
 
 type Lesson = {
   id: number
@@ -29,6 +30,7 @@ const AdminLesson: NextPageWithLayout = () => {
     { id: 0, name: "Mevcut Dersler" },
     { id: 1, name: "Ders Yazısı Ekle" },
     { id: 2, name: "Ders Ekle" },
+    { id: 3, name: "Ders Yazıları" },
   ]
 
   useEffect(() => {
@@ -240,6 +242,8 @@ const AdminLesson: NextPageWithLayout = () => {
       {currentTab === 1 && <AddLessonPost />}
 
       {currentTab === 2 && <AddLesson />}
+
+      {currentTab === 3 && <LessonsPosts />}
 
     </div>
   )
