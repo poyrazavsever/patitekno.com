@@ -32,8 +32,8 @@ const Login: NextPageWithLayout = () => {
       }
 
       // Başarılı giriş
+      router.push('/admin')
       toast.success('Giriş başarılı!')
-      router.push('/dashboard')
     } catch (error: any) {
       toast.error(error.message)
       setError(error.message)
