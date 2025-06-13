@@ -11,3 +11,60 @@
 body{
   background-color: var(--color-background);
 }
+
+/* Markdown Custom Styles */
+.md-custom {
+  @apply text-textColor leading-relaxed;
+}
+
+.md-custom h1 {
+  @apply text-4xl font-bold mb-6 text-primary;
+}
+
+.md-custom h2 {
+  @apply text-3xl font-semibold mb-5 text-primary;
+}
+
+.md-custom h3 {
+  @apply text-2xl font-medium mb-4 text-primary;
+}
+
+.md-custom p {
+  @apply mb-4 text-lg;
+}
+
+.md-custom ul, .md-custom ol {
+  @apply mb-4 ml-6;
+}
+
+.md-custom li {
+  @apply mb-2 list-disc;
+}
+
+.md-custom code {
+  @apply px-2 py-1 bg-gray-100 rounded text-sm font-mono;
+}
+
+.md-custom pre {
+  @apply p-4 mb-4 bg-gray-900 rounded-lg overflow-x-auto;
+}
+
+.md-custom pre code {
+  @apply bg-transparent text-gray-100 p-0;
+}
+
+.md-custom blockquote {
+  @apply pl-4 border-l-4 border-primary italic my-4;
+}
+
+.md-custom a {
+  @apply text-primary hover:underline;
+}
+
+.md-custom img {
+  @apply rounded-lg max-w-full h-auto my-4;
+}
+
+.md-custom hr {
+  @apply my-8 border-gray-200;
+}
