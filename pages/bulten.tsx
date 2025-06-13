@@ -16,10 +16,20 @@ type BlogPost = {
   };
 };
 
+type Lesson = {
+  id: number;
+  title: string;
+  icon_name: string;
+  slug: string;
+};
+
 export default function Bulten() {
 
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [lessons, setLessons] = useState<Lesson[]>([]);
   const [loading, setLoading] = useState(true);
+  const [lessonsLoading, setLessonsLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -29,7 +39,7 @@ export default function Bulten() {
           .select(`
             id,
             title,
-            description,
+            content,
             slug,
             created_at,
             category:categories(name)
@@ -52,6 +62,27 @@ export default function Bulten() {
     };
 
     fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    const fetchLessons = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('lessons')
+          .select('id, title, icon_name, slug')
+          .order('created_at', { ascending: false })
+          .limit(3);
+
+        if (error) throw error;
+        setLessons(data || []);
+      } catch (error) {
+        console.error('Dersler yüklenirken hata:', error);
+      } finally {
+        setLessonsLoading(false);
+      }
+    };
+
+    fetchLessons();
   }, []);
 
 
@@ -86,7 +117,15 @@ export default function Bulten() {
 
       <div className="flex flex-col items-start gap-6 mt-36">
         <h1 className="text-2xl font-semibold text-primary">Son Eğitimlerimizi Kaçırma!</h1>
-        <EduCard />
+        {lessonsLoading ? (
+          <div>Yükleniyor...</div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+            {lessons.map((lesson) => (
+              <EduCard key={lesson.id} lesson={lesson} />
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col items-start gap-4 mt-36">

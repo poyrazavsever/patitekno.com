@@ -13,7 +13,7 @@ const BlogCard = ({ title, description, date, slug, category }: BlogCardProps) =
   return (
     <Link
       href={`/blog/${slug}`}
-      className="w-72 rounded-md border border-neutral-200 hover:shadow-sm transition cursor-pointer"
+      className="w-72 rounded-md border border-neutral-200 hover:shadow-xs transition cursor-pointer"
     >
       <div className="flex flex-col items-start gap-2 p-4">
         {category && (
