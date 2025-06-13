@@ -26,7 +26,7 @@ const BlogList = () => {
           .select(`
             id,
             title,
-            description,
+            content,
             slug,
             created_at,
             category:categories(name)
