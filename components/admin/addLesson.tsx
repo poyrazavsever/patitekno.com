@@ -3,9 +3,12 @@ import dynamic from 'next/dynamic'
 import { supabase } from '@/utils/supabaseClient'
 import toast from 'react-hot-toast'
 import 'react-markdown-editor-lite/lib/index.css'
+import MarkdownIt from 'markdown-it'
 
-// Dinamik import - SSR hatası olmaması için
+const mdParser = new MarkdownIt()
+
 const MdEditor = dynamic(() => import('react-markdown-editor-lite'), { ssr: false })
+
 
 const skillIcons = [
   'html',
@@ -153,8 +156,18 @@ const AddLesson: React.FC = () => {
         <MdEditor
           style={{ height: '300px' }}
           value={content}
-          renderHTML={(text) => <div>{text}</div>}
+          renderHTML={text => mdParser.render(text)}
           onChange={handleEditorChange}
+          className="border border-gray-300 rounded"
+          view={{ menu: true, md: true, html: true }}
+          canView={{
+            menu: true,
+            md: true,
+            html: true,
+            both: true,
+            fullScreen: true,
+            hideMenu: true
+          }}
         />
       </div>
 
