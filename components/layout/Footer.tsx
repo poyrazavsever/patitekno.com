@@ -63,12 +63,12 @@ const Footer = () => {
       <footer className='pt-24 pb-16 flex flex-col md:flex-row items-start justify-between gap-12 md:gap-0'>
   
         <div className='flex flex-col items-start gap-2 w-full md:w-1/3'>
-          <h3 className='text-base font-semibold text-primary'>Pati Tekno Hakkında</h3>
-          <p className='text-base font-medium text-textColor'>
+          <h3 className='text-base font-semibold text-primary dark:text-primaryDark'>Pati Tekno Hakkında</h3>
+          <p className='text-base font-medium text-textColor dark:text-textColorDark'>
             Pati Tekno, yazılım, tasarım ve teknoloji dünyasına eğlenceli ama öğretici bir pencereden bakan bir içerik platformudur.
           </p>
   
-          <div className='mt-4 flex items-center border border-neutral-300 rounded-full'>
+          <div className='mt-4 flex items-center border border-neutral-300 dark:border-gray-600 rounded-full'>
             <button
               onClick={() => setLightMode("light")}
               className={classNames(
@@ -108,7 +108,7 @@ const Footer = () => {
         </div>
   
         <div className='flex flex-col items-start gap-2 w-full md:w-1/5'>
-          <h3 className='text-base font-semibold text-primary'>Bizi Takip Et!</h3>
+          <h3 className='text-base font-semibold text-primary dark:text-primaryDark'>Bizi Takip Et!</h3>
   
           <div className="flex flex-row md:flex-col gap-3">
             {logos?.map((logo) => (
@@ -116,7 +116,7 @@ const Footer = () => {
                 key={logo.name}
                 href={logo.link}
                 target='_blank'
-                className='px-4 py-3 rounded-md border border-neutral-300 flex items-center justify-center cursor-pointer hover:shadow-sm transition-all'
+                className='px-4 py-3 rounded-md border border-neutral-300 dark:border-neutral-600 flex items-center justify-center cursor-pointer hover:shadow-sm transition-all'
               >
                 <img
                   src={`/Image/${logo.name}.png`}
@@ -129,9 +129,9 @@ const Footer = () => {
         </div>
   
         <div className='w-full md:w-1/3'>
-          <h3 className='text-base font-semibold text-primary'>Bültenimize Katıl</h3>
+          <h3 className='text-base font-semibold text-primary dark:text-primaryDark'>Bültenimize Katıl</h3>
   
-          <p className='text-sm text-textColor mb-2'>
+          <p className='text-sm text-textColor dark:text-textColorDark mb-2'>
             Yeni videolar, blog yazıları ve eğitimlerden ilk sen haberdar ol!
           </p>
   
@@ -142,7 +142,7 @@ const Footer = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="E-posta adresiniz"
-              className='flex-1 px-4 py-2 border border-neutral-300 rounded-md text-sm text-textColor focus:outline-none focus:ring-2 focus:ring-primary'
+              className='flex-1 px-4 py-2 border border-neutral-300 rounded-md text-sm text-textColor focus:outline-none focus:ring-2 focus:ring-primary dark:placeholder:text-textColorDark dark:bg-backgroundDark dark:border-gray-600 dark:text-textColorDark transition-all'
             />
             <Button
               name="Katıl"

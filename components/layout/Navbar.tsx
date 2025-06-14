@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const navbarLink = "text-base font-medium text-textColor hover:opacity-70 transition-all"
+  const navbarLink = "text-base font-medium text-textColor dark:text-textColorDark hover:opacity-70 transition-all"
 
   const menuItems = [
     { href: "/", label: "Ana Sayfa" },
@@ -21,7 +21,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link href="/" className='flex items-center gap-2'>
           <img src="/Logos/LogoWithoutBg.png" alt="logo for navbar" className='w-16'/>
-          <span className='text-lg font-extrabold text-primary'>patitekno.com</span>
+          <span className='text-lg font-extrabold text-primary dark:text-primaryDark'>patitekno.com</span>
         </Link>
 
         {/* Desktop Menu */}
@@ -40,7 +40,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-primary hover:opacity-70 transition-all cursor-pointer"
+          className="md:hidden p-2 text-primary dark:text-primaryDark hover:opacity-70 transition-all cursor-pointer"
         >
           {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
         </button>
@@ -54,7 +54,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute w-full top-full left-0 right-0 bg-primary z-20 rounded-b-lg md:hidden"
+            className="absolute w-full top-full left-0 right-0 bg-primary dark:bg-backgroundDark dark:border dark:border-gray-700 z-20 rounded-b-lg md:hidden"
           >
             <div className='flex flex-col py-4'>
               {menuItems.map((item) => (
