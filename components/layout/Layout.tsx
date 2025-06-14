@@ -9,7 +9,7 @@ interface props {
 
 const Layout = ({children} : props) => {
   return (
-    <div className='min-h-screen max-w-5xl container mx-auto flex flex-col font-nunito'>
+    <div className='min-h-screen w-full px-6 md:px-0 md:max-w-5xl md:container mx-auto flex flex-col font-nunito'>
 
       <Toaster position='top-right'/>
 
