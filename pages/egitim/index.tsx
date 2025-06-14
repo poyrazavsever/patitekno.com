@@ -36,7 +36,7 @@ const Egitim = () => {
   return (
     <div>
       <div className="flex flex-col items-start gap-6 mt-12">
-        <h1 className="text-2xl font-semibold text-primary">Youtube Eğitimleri</h1>
+        <h1 className="text-2xl font-semibold text-primary dark:text-primaryDark">Youtube Eğitimleri</h1>
         
         {loading ? (
           <div className="w-full text-center py-8">Yükleniyor...</div>

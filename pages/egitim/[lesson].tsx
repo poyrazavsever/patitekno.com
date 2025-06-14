@@ -76,7 +76,7 @@ const Lesson = () => {
           <div className="w-full">
 
             <div className="mb-6 flex items-center justify-between">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-primaryDark mb-2">
                 {selectedPost.title}
               </h1>
               {selectedPost.video_link && (
@@ -93,19 +93,19 @@ const Lesson = () => {
             </div>
 
             <div className='flex items-center justify-between'>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-gray-500 dark:text-gray-200 mb-4">
                 {new Date(selectedPost.created_at).toLocaleDateString('tr-TR', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
                 })}
               </p>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-gray-500 dark:text-gray-200 mb-4">
                 {selectedPost.content.length} karakter
               </p>
             </div>
 
-            <hr className='border border-neutral-300 '/>
+            <hr className='border border-neutral-300 dark:border-gray-600'/>
             
             <div className="md-custom mt-8">
               <ReactMarkdown>{selectedPost.content}</ReactMarkdown>

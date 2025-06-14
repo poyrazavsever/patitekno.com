@@ -13,25 +13,52 @@
   --font-nunito: "Nunito", "sans-serif";
 }
 
+
+
 /* Markdown Custom Styles */
 .md-custom {
-  @apply text-textColor leading-relaxed;
+  @apply leading-relaxed;
+  color: var(--color-textColor);
+}
+
+.dark .md-custom {
+  color: var(--color-textColorDark);
 }
 
 .md-custom h1 {
-  @apply text-4xl font-bold mb-6 text-primary;
+  @apply text-4xl font-bold mb-6;
+  color: var(--color-primary);
+}
+
+.dark .md-custom h1 {
+  color: var(--color-primaryDark);
 }
 
 .md-custom h2 {
-  @apply text-3xl font-semibold mb-5 text-primary;
+  @apply text-3xl font-semibold mb-5;
+  color: var(--color-primary);
+}
+
+.dark .md-custom h2 {
+  color: var(--color-primaryDark);
 }
 
 .md-custom h3 {
-  @apply text-2xl font-medium mb-4 text-primary;
+  @apply text-2xl font-medium mb-4;
+  color: var(--color-primary);
+}
+
+.dark .md-custom h3 {
+  color: var(--color-primaryDark);
 }
 
 .md-custom p {
   @apply mb-4 text-lg;
+  color: var(--color-textColor);
+}
+
+.dark .md-custom p {
+  color: var(--color-textColorDark);
 }
 
 .md-custom ul, .md-custom ol {
@@ -43,11 +70,23 @@
 }
 
 .md-custom code {
-  @apply px-2 py-1 bg-gray-100 rounded text-sm font-mono;
+  @apply px-2 py-1 rounded text-sm font-mono;
+  background: #e5e7eb;
+  color: var(--color-textColor);
+}
+
+.dark .md-custom code {
+  background: #1e293b;
+  color: var(--color-textColorDark);
 }
 
 .md-custom pre {
-  @apply p-4 mb-4 bg-gray-900 rounded-lg overflow-x-auto;
+  @apply p-4 mb-4 rounded-lg overflow-x-auto;
+  background: #1e293b;
+}
+
+.dark .md-custom pre {
+  background: #0f172a;
 }
 
 .md-custom pre code {
@@ -55,11 +94,23 @@
 }
 
 .md-custom blockquote {
-  @apply pl-4 border-l-4 border-primary italic my-4;
+  @apply pl-4 border-l-4 italic my-4;
+  border-color: var(--color-primary);
+  color: var(--color-textColor);
+}
+
+.dark .md-custom blockquote {
+  border-color: var(--color-primaryDark);
+  color: var(--color-textColorDark);
 }
 
 .md-custom a {
-  @apply text-primary hover:underline;
+  @apply hover:underline;
+  color: var(--color-primary);
+}
+
+.dark .md-custom a {
+  color: var(--color-primaryDark);
 }
 
 .md-custom img {
@@ -67,5 +118,10 @@
 }
 
 .md-custom hr {
-  @apply my-8 border-gray-200;
+  @apply my-8;
+  border-color: #e5e7eb;
+}
+
+.dark .md-custom hr {
+  border-color: #334155;
 }
