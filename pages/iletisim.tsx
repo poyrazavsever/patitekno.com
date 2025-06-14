@@ -74,7 +74,7 @@ const Iletisim = () => {
   }
 
   return (
-    <section className='pt-24 text-textColor'>
+    <section className='pt-12 sm:pt-24 text-textColor'>
 
       {/* Başlık */}
       <div className='mb-8'>
