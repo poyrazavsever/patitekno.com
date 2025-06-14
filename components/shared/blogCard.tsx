@@ -13,7 +13,7 @@ const BlogCard = ({ title, description, date, slug, category }: BlogCardProps) =
   return (
     <Link
       href={`/blog/${slug}`}
-      className="w-72 rounded-md border border-neutral-200 hover:shadow-xs transition cursor-pointer"
+      className="w-60 sm:w-72 rounded-md border border-neutral-200 hover:shadow-xs transition cursor-pointer"
     >
       <div className="flex flex-col items-start gap-2 p-4">
         {category && (
@@ -21,7 +21,7 @@ const BlogCard = ({ title, description, date, slug, category }: BlogCardProps) =
             {category}
           </span>
         )}
-        <h3 className="text-xl font-semibold mb-2 text-primary">{title}</h3>
+        <h3 className="text-xl font-semibold mb-2 text-primary line-clamp-1">{title}</h3>
         <p className="text-textColor text-sm mb-3 line-clamp-2">{description}</p>
         <span className="text-xs text-gray-400">{date}</span>
       </div>

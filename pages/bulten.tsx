@@ -132,14 +132,11 @@ export default function Bulten() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-posta adresiniz"
-            className='flex-1 px-4 py-2 border border-neutral-300 rounded-md text-sm text-textColor focus:outline-none focus:ring-2 focus:ring-primary'
+            className='w-36 md:w-fit flex-1 px-4 py-2 border border-neutral-300 rounded-md text-sm text-textColor focus:outline-none focus:ring-2 focus:ring-primary'
           />
-          <Button 
-            name='Kayıt Ol' 
-            type={false} 
-            Icon 
-            size="normal"
-          />
+          <button
+            onClick={handleSubmit}
+            className='text-xs md:text-base px-4 py-2 bg-primary text-background rounded-md hover:bg-primary/90 transition-colors'> Kayıt Ol </button>
         </form>
       </div>
 
