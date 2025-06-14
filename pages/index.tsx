@@ -101,9 +101,9 @@ export default function Home() {
         <div className="relative flex items-center justify-center my-16 md:my-48">
           <img src="/Logos/LogoWithoutBg.png" alt="background logo" className='w-48 md:w-[600px] absolute top-0 left-1/4 opacity-5 -z-10' />
 
-          <div className="flex flex-col items-center gap-4 w-2/3 text-center">
-            <h1 className="text-lg md:text-2xl font-semibold text-primary">Teknoloji, Tasarım ve Yazılım Trendlerini Kaçırma!</h1>
-            <p className="text-sm md:text-base font-medium text-textColor">Patitekno; yazılım, tasarım ve teknoloji dünyasını senin için sadeleştiriyor. YouTube videolarımla eş zamanlı yayınlanan yazılı içeriklerle istediğin türden kaynaklara ulaşabilirsin. Son güncellemeleri kaçırmamak için bültene kayıt olmayı unutma!</p>
+          <div className="flex flex-col items-center gap-4 px-3 w-full md:w-2/3 text-center">
+            <h1 className="text-lg md:text-2xl font-semibold text-primary dark:text-primaryDark">Teknoloji, Tasarım ve Yazılım Trendlerini Kaçırma!</h1>
+            <p className="text-sm md:text-base font-medium text-textColor dark:text-textColorDark">Patitekno; yazılım, tasarım ve teknoloji dünyasını senin için sadeleştiriyor. YouTube videolarımla eş zamanlı yayınlanan yazılı içeriklerle istediğin türden kaynaklara ulaşabilirsin. Son güncellemeleri kaçırmamak için bültene kayıt olmayı unutma!</p>
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <Button name="Bültene Abone Ol" type={false} Icon size="normal" />
               <Button name="Eğitimleri İncele" type={true} Icon size="normal" />
@@ -114,7 +114,7 @@ export default function Home() {
 
 
         <div className="flex flex-col items-start gap-6 mt-36">
-        <h1 className="text-2xl font-semibold text-primary">Popüler Eğitim Serileri</h1>
+        <h1 className="text-2xl font-semibold text-primary  dark:text-primaryDark">Popüler Eğitim Serileri</h1>
         {lessonsLoading ? (
           <div>Yükleniyor...</div>
         ) : (
@@ -128,12 +128,12 @@ export default function Home() {
 
 
         <div className="flex flex-col items-start gap-6 mt-36">
-          <h1 className="text-2xl font-semibold text-primary">Son Yüklenen Videolar</h1>
+          <h1 className="text-2xl font-semibold text-primary dark:text-primaryDark">Son Yüklenen Videolar</h1>
           <YoutubeData />
         </div>
 
         <div className="flex flex-col items-start gap-4 mt-36">
-          <h1 className="text-2xl font-semibold text-primary">Son Yazılar</h1>
+          <h1 className="text-2xl font-semibold text-primary dark:text-primaryDark">Son Yazılar</h1>
           {loading ? (
             <div>Yükleniyor...</div>
           ) : (

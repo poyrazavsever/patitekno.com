@@ -48,15 +48,15 @@ const YoutubeData = () => {
         const videoId = video.id.videoId;
         return (
 
-          <div key={videoId} className="border border-neutral-300 p-2 rounded-md">
+          <div key={videoId} className="border border-neutral-300 dark:border-neutral-600 p-2 rounded-md">
             <iframe
               className="w-full aspect-video rounded-md"
               src={`https://www.youtube.com/embed/${videoId}`}
               title={video.snippet.title}
               allowFullScreen
             />
-            <h3 className="mt-2 font-semibold text-lg text-primary">{video.snippet.title}</h3>
-            <p className="text-sm text-textColor line-clamp-3">{video.snippet.description}</p>
+            <h3 className="mt-2 font-semibold text-lg text-primary dark:text-primaryDark">{video.snippet.title}</h3>
+            <p className="text-sm text-textColor dark:text-textColorDark line-clamp-3">{video.snippet.description}</p>
           </div>
 
         );
