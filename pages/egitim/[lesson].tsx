@@ -71,7 +71,7 @@ const Lesson = () => {
         onItemClick={setSelectedPost}
       />
 
-      <main className="lex-1 min-h-screen py-16 w-full">
+      <main className="lex-1 min-h-screen py-8 w-full">
         {selectedPost ? (
           <div className="w-full">
 
