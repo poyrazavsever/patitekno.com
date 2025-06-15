@@ -1,68 +1,66 @@
-"use client";
+import React, { useEffect, useState } from 'react'
+import { supabase } from '@/utils/supabaseClient'
 
-import React, { useEffect, useState } from "react";
-import classNames from "classnames";
+type YoutubeVideo = {
+  id: number
+  video_name: string
+  video_link: string
+  video_desc: string
+  show: boolean
+}
 
-type VideoItem = {
-  id: {
-    videoId: string;
-  };
-  snippet: {
-    title: string;
-    description: string;
-    thumbnails: {
-      medium: {
-        url: string;
-      };
-    };
-    publishedAt: string;
-  };
-};
-
-const YoutubeData = () => {
-  const [videos, setVideos] = useState<VideoItem[]>([]);
-
-  const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY!;
-  const channelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID!;
-  const maxResults = 2;
+const YoutubeData= () => {
+  const [videos, setVideos] = useState<YoutubeVideo[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchVideos = async () => {
-      try {
-        const response = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${maxResults}`
-        );
-        const data = await response.json();
-        setVideos(data.items);
-      } catch (error) {
-        console.error("Video çekilemedi:", error);
-      }
-    };
+      const { data, error } = await supabase
+        .from('youtube')
+        .select('*')
+        .eq('show', true)
+        .order('id', { ascending: false })
+      setVideos(data || [])
+      setLoading(false)
+    }
+    fetchVideos()
+  }, [])
 
-    fetchVideos();
-  }, []);
+  // YouTube linkinden video ID'sini al
+  const getYoutubeId = (url: string) => {
+    const match = url.match(
+      /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+    )
+    return match ? match[1] : ''
+  }
 
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
-      {videos.map((video) => {
-        const videoId = video.id.videoId;
-        return (
+    <section className='w-full'>
+      {loading ? (
+        <div>Yükleniyor...</div>
+      ) : videos.length === 0 ? (
+        <div>Henüz video eklenmemiş.</div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {videos.map((video) => (
+            <div key={video.id} className="border border-neutral-300 dark:border-neutral-600 rounded-md p-4 flex flex-col">
+              <div className="aspect-w-16 aspect-h-9 mb-4">
+                <iframe
+                  src={`https://www.youtube.com/embed/${getYoutubeId(video.video_link)}`}
+                  title={video.video_name}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full rounded"
+                />
+              </div>
+              <h3 className="text-lg font-semibold text-primary dark:text-primaryDark mb-2">{video.video_name}</h3>
+              <p className="text-sm text-textColor dark:text-textColorDark">{video.video_desc}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
 
-          <div key={videoId} className="border border-neutral-300 dark:border-neutral-600 p-2 rounded-md">
-            <iframe
-              className="w-full aspect-video rounded-md"
-              src={`https://www.youtube.com/embed/${videoId}`}
-              title={video.snippet.title}
-              allowFullScreen
-            />
-            <h3 className="mt-2 font-semibold text-lg text-primary dark:text-primaryDark">{video.snippet.title}</h3>
-            <p className="text-sm text-textColor dark:text-textColorDark line-clamp-3">{video.snippet.description}</p>
-          </div>
-
-        );
-      })}
-    </div>
-  );
-};
-
-export default YoutubeData;
+export default YoutubeData
