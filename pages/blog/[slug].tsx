@@ -87,7 +87,7 @@ const BlogDetail = () => {
   }
 
   return (
-    <article className="max-w-6xl mx-auto pt-8 px-4 md:px-0">
+    <article className="max-w-6xl mx-auto pt-8 md:px-0">
       <div className="space-y-8">
         {/* Header */}
         <header className="space-y-4">

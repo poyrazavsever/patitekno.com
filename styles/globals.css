@@ -53,7 +53,7 @@
 }
 
 .md-custom p {
-  @apply mb-4 text-lg;
+  @apply mb-4 text-lg break-words whitespace-pre-wrap;
   color: var(--color-textColor);
 }
 
@@ -124,4 +124,28 @@
 
 .dark .md-custom hr {
   border-color: #334155;
+}
+
+.md-custom strong {
+  @apply font-bold text-black dark:text-white;
+}
+
+.md-custom em {
+  @apply italic;
+}
+
+.md-custom del {
+  @apply line-through text-gray-500 dark:text-gray-400;
+}
+
+.md-custom u {
+  @apply underline decoration-dotted underline-offset-4;
+}
+
+.md-custom mark {
+  @apply bg-yellow-300 text-black px-1 rounded-sm;
+}
+
+.md-custom input[type="checkbox"] {
+  @apply mr-2 align-middle;
 }
