@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {useState} from 'react'
+import { useEffect, useState } from 'react'
 import { RiComputerLine, RiSunLine, RiMoonClearLine } from "react-icons/ri";
 import Button from '../ui/button';
 import { supabase } from '@/utils/supabaseClient';
@@ -24,7 +24,7 @@ const logos = [
 
 const Footer = () => {
 
-  const [lightMode, setLightMode] = useState("light");
+  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system')
   const [email, setEmail] = useState('');
   const [isRecaptchaOpen, setIsRecaptchaOpen] = useState(false);
   const lightStyle = "text-primary rounded-full p-2 text-lg cursor-pointer hover:bg-sky-200 transition-all";
@@ -58,6 +58,44 @@ const Footer = () => {
     setIsRecaptchaOpen(true);
   };
 
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('site-theme')
+    if (savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'system') {
+      setTheme(savedTheme)
+    }
+  }, [])
+  
+  // theme değişince localStorage'a kaydet
+  useEffect(() => {
+    localStorage.setItem('site-theme', theme)
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else if (theme === 'light') {
+      document.documentElement.classList.remove('dark')
+    } else if (theme === 'system') {
+      // Sistem temasına göre ayarla
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    }
+  }, [theme])
+
+  useEffect(() => {
+    if (theme !== 'system') return
+    const listener = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    }
+    const mq = window.matchMedia('(prefers-color-scheme: dark)')
+    mq.addEventListener('change', listener)
+    return () => mq.removeEventListener('change', listener)
+  }, [theme])
+
   return (
     <>
       <footer className='pt-24 pb-16 flex flex-col md:flex-row items-start justify-between gap-12 md:gap-0'>
@@ -70,11 +108,11 @@ const Footer = () => {
   
           <div className='mt-4 flex items-center border border-neutral-300 dark:border-gray-600 rounded-full'>
             <button
-              onClick={() => setLightMode("light")}
+              onClick={() => setTheme("light")}
               className={classNames(
                 [lightStyle],
                 {
-                  "!text-background bg-primary": lightMode === "light",
+                  "!text-background bg-primary": theme === "light",
                 }
               )}
             >
@@ -82,11 +120,11 @@ const Footer = () => {
             </button>
   
             <button
-              onClick={() => setLightMode("system")}
+              onClick={() => setTheme("system")}
               className={classNames(
                 [lightStyle],
                 {
-                  "!text-background bg-primary": lightMode === "system",
+                  "!text-background bg-primary": theme === "system",
                 }
               )}
             >
@@ -94,11 +132,11 @@ const Footer = () => {
             </button>
   
             <button
-              onClick={() => setLightMode("dark")}
+              onClick={() => setTheme("dark")}
               className={classNames(
                 [lightStyle],
                 {
-                  "!text-background bg-primary": lightMode === "dark",
+                  "!text-background bg-primary": theme === "dark",
                 }
               )}
             >
