@@ -52,7 +52,7 @@ const BlogList = () => {
 
   return (
     <div className="flex flex-col items-start gap-4 mt-16">
-      <h1 className="text-2xl font-semibold text-primary">Blog Yazıları</h1>
+      <h1 className="text-2xl font-semibold text-primary dark:text-primaryDark">Blog Yazıları</h1>
 
       {loading ? (
         <div>Yükleniyor...</div>
