@@ -24,7 +24,7 @@ const logos = [
 
 const Footer = () => {
 
-  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system')
+  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('light')
   const [email, setEmail] = useState('');
   const [isRecaptchaOpen, setIsRecaptchaOpen] = useState(false);
   const lightStyle = "text-primary rounded-full p-2 text-lg cursor-pointer hover:bg-sky-200 transition-all";
