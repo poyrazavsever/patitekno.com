@@ -4,7 +4,7 @@ import { RiComputerLine, RiSunLine, RiMoonClearLine } from "react-icons/ri";
 import Button from '../ui/button';
 import { supabase } from '@/utils/supabaseClient';
 import { toast } from 'react-hot-toast';
-import RecaptchaModal from '@/components/shared/reCaptcha';
+import HCaptchaModal from '@/components/shared/HCaptchaModal';
 
 
 const logos = [
@@ -192,7 +192,7 @@ const Footer = () => {
         </div>
       </footer>
   
-      <RecaptchaModal
+      <HCaptchaModal
         isOpen={isRecaptchaOpen}
         onClose={() => setIsRecaptchaOpen(false)}
         onVerify={handleSubscribe}

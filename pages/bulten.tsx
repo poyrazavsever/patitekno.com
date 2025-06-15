@@ -4,7 +4,7 @@ import YoutubeData from '@/components/shared/youtubeData';
 import BlogCard from '@/components/shared/blogCard';
 import Button from '@/components/ui/button';
 import { supabase } from '@/utils/supabaseClient';
-import RecaptchaModal from '@/components/shared/reCaptcha'
+import HCaptchaModal from '@/components/shared/HCaptchaModal'
 import { toast } from 'react-hot-toast';
 
 type BlogPost = {
@@ -140,7 +140,7 @@ export default function Bulten() {
         </form>
       </div>
 
-      <RecaptchaModal 
+      <HCaptchaModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onVerify={handleVerify}

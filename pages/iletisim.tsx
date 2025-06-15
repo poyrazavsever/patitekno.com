@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { supabase } from '@/utils/supabaseClient'
 import { toast } from 'react-hot-toast'
-import RecaptchaModal from '@/components/shared/reCaptcha'
+import HCaptchaModal from '@/components/shared/HCaptchaModal'
 
 
 const logos = [
@@ -128,7 +128,7 @@ const Iletisim = () => {
         {/* ...existing social media section... */}
       </div>
 
-      <RecaptchaModal 
+      <HCaptchaModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onVerify={handleVerify}
