@@ -78,8 +78,8 @@ const Iletisim = () => {
 
       {/* Başlık */}
       <div className='mb-8'>
-        <h1 className='text-2xl font-semibold text-primary mb-4'>İletişim</h1>
-        <p className='text-base text-textColor max-w-lg'>
+        <h1 className='text-2xl font-semibold text-primary dark:text-primaryDark mb-4'>İletişim</h1>
+        <p className='text-base text-textColor dark:text-textColorDark max-w-lg'>
           Görüş, öneri ya da iş birliği teklifin mi var? Aşağıdaki formu doldur veya sosyal medya hesaplarımızdan bize ulaş!
         </p>
       </div>
@@ -92,7 +92,7 @@ const Iletisim = () => {
             placeholder='Adınız (Opsiyonel)'
             value={formData.name}
             onChange={handleChange}
-            className='border border-neutral-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm'
+            className='border border-neutral-300 dark:border-neutral-600 dark:text-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm'
           />
 
           <input
@@ -102,7 +102,7 @@ const Iletisim = () => {
             required
             value={formData.email}
             onChange={handleChange}
-            className='border border-neutral-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm'
+            className='border border-neutral-300 dark:border-neutral-600 dark:text-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm'
           />
 
           <textarea
@@ -112,7 +112,7 @@ const Iletisim = () => {
             required
             value={formData.message}
             onChange={handleChange}
-            className='border border-neutral-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm resize-none'
+            className='border border-neutral-300 dark:border-neutral-600 dark:text-gray-300 px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm resize-none'
           />
 
           <button 
