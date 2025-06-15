@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaMessage, FaBlog, FaBook, FaNewspaper } from "react-icons/fa6";
+import { FaMessage, FaBlog, FaBook, FaNewspaper, FaYoutube } from "react-icons/fa6";
 
 // import { useRouter } from 'next/router'
 
@@ -39,6 +39,11 @@ const SidebarAdmin = () => {
                 <section className={sectionStyle}>  
                     <FaMessage className={iconStyle}/>
                     <a href="/admin/mesajlar">Mesajların</a>
+                </section>
+
+                <section className={sectionStyle}>  
+                    <FaYoutube className={iconStyle}/>
+                    <a href="/admin/youtube">Youtube</a>
                 </section>
             </div>
 
