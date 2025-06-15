@@ -90,12 +90,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <Head>
-        <title>Pati Tekno | Teknoloji | Tasarım | Yazılım</title>
-        <meta name="description" content="Pati Tekno: Teknoloji, tasarım ve yazılım dünyasına eğlenceli bir pencereden bak!" />
-      </Head>
-      <div>
+    <div>
 
         {/* Hero Section */}
         <div className="relative flex items-center justify-center my-16 md:my-48">
@@ -157,6 +152,5 @@ export default function Home() {
         </div>
 
       </div>
-    </>
   );
 }
