@@ -63,9 +63,9 @@ const BlogDetail = () => {
       <>
         <div className="max-w-6xl mx-auto pt-8">
           <div className="animate-pulse space-y-6">
-            <div className="h-8 bg-gray-200 rounded w-3/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/4"></div>
-            <div className="h-96 bg-gray-200 rounded"></div>
+            <div className="h-8 bg-gray-200 dark:bg-primary rounded w-3/4"></div>
+            <div className="h-4 bg-gray-200 dark:bg-primary rounded w-1/4"></div>
+            <div className="h-96 bg-gray-200 dark:bg-primary rounded"></div>
           </div>
         </div>
       </>
@@ -75,10 +75,10 @@ const BlogDetail = () => {
   if (!post) {
     return (
       <div className="max-w-6xl mx-auto pt-8">
-        <h1 className="text-2xl font-bold text-gray-900">Blog yazısı bulunamadı</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-200">Blog yazısı bulunamadı</h1>
         <button
           onClick={() => router.push('/blog')}
-          className="mt-4 text-primary hover:underline"
+          className="mt-4 text-primary dark:text-primaryDark hover:underline"
         >
           ← Blog'a Dön
         </button>
@@ -91,8 +91,8 @@ const BlogDetail = () => {
       <div className="space-y-8">
         {/* Header */}
         <header className="space-y-4">
-          <h1 className="text-4xl font-bold text-gray-900">{post.title}</h1>
-          <div className="flex items-center gap-4 text-gray-600">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-200">{post.title}</h1>
+          <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400">
             <time dateTime={post.created_at}>
               {new Date(post.created_at).toLocaleDateString('tr-TR', {
                 year: 'numeric',
