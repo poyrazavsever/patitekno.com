@@ -7,6 +7,7 @@ import YoutubeData from "@/components/shared/youtubeData";
 
 import { supabase } from "@/utils/supabaseClient";
 import BlogCard from "@/components/shared/blogCard";
+import Link from "next/link";
 
 
 type BlogPost = {
@@ -100,8 +101,12 @@ export default function Home() {
             <h1 className="text-lg md:text-2xl font-semibold text-primary dark:text-primaryDark">Teknoloji, Tasarım ve Yazılım Trendlerini Kaçırma!</h1>
             <p className="text-sm md:text-base font-medium text-textColor dark:text-textColorDark">Patitekno; yazılım, tasarım ve teknoloji dünyasını senin için sadeleştiriyor. YouTube videolarımla eş zamanlı yayınlanan yazılı içeriklerle istediğin türden kaynaklara ulaşabilirsin. Son güncellemeleri kaçırmamak için bültene kayıt olmayı unutma!</p>
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <Button name="Bültene Abone Ol" type={false} Icon size="normal" />
-              <Button name="Eğitimleri İncele" type={true} Icon size="normal" />
+              <Link href="/bulten" className="py-2 px-4 bg-primary dark:bg-primaryDark text-white dark:text-white rounded-md hover:bg-primary/60 dark:hover:bg-primaryDarkHover transition-colors">
+                Bültene Abone Ol
+              </Link>
+              <Link href="/egitim" className="py-2 px-4 border border-primary dark:border-primaryDark text-primary dark:text-primaryDark rounded-md hover:bg-primary dark:hover:bg-primaryDark dark:hover:text-textColorDark transition-colors">
+                Eğitimleri İncele
+              </Link>
             </div>
           </div>
 
