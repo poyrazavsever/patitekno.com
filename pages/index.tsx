@@ -104,7 +104,7 @@ export default function Home() {
               <Link href="/bulten" className="py-2 px-4 bg-primary dark:bg-primaryDark text-white dark:text-white rounded-md hover:bg-primary/60 dark:hover:bg-primaryDarkHover transition-colors">
                 Bültene Abone Ol
               </Link>
-              <Link href="/egitim" className="py-2 px-4 border border-primary dark:border-primaryDark text-primary dark:text-primaryDark rounded-md hover:bg-primary dark:hover:bg-primaryDark dark:hover:text-textColorDark transition-colors">
+              <Link href="/egitim" className="py-2 px-4 border border-primary dark:border-primaryDark text-primary dark:text-primaryDark rounded-md hover:bg-primary hover:text-neutral-200 dark:hover:bg-primaryDark dark:hover:text-textColorDark transition-colors">
                 Eğitimleri İncele
               </Link>
             </div>
