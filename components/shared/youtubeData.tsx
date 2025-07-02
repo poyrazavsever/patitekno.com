@@ -9,7 +9,7 @@ type YoutubeVideo = {
   show: boolean
 }
 
-const YoutubeData= () => {
+const YoutubeData = () => {
   const [videos, setVideos] = useState<YoutubeVideo[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -26,12 +26,20 @@ const YoutubeData= () => {
     fetchVideos()
   }, [])
 
-  // YouTube linkinden video ID'sini al
-  const getYoutubeId = (url: string) => {
+  // YouTube linkinden video ID'sini al ve Shorts kontrolü yap
+  const getYoutubeEmbed = (url: string) => {
+    // Shorts URL kontrolü
+    if (url.includes('/shorts/')) {
+      const shortsId = url.split('/shorts/')[1].split('?')[0]
+      return `https://www.youtube.com/embed/${shortsId}?rel=0`
+    }
+
+    // Normal video URL kontrolü
     const match = url.match(
       /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
     )
-    return match ? match[1] : ''
+    const videoId = match ? match[1] : ''
+    return `https://www.youtube.com/embed/${videoId}?rel=0`
   }
 
   return (
@@ -46,7 +54,7 @@ const YoutubeData= () => {
             <div key={video.id} className="border border-neutral-300 dark:border-neutral-600 rounded-md p-4 flex flex-col">
               <div className="aspect-w-16 aspect-h-9 mb-4">
                 <iframe
-                  src={`https://www.youtube.com/embed/${getYoutubeId(video.video_link)}`}
+                  src={getYoutubeEmbed(video.video_link)}
                   title={video.video_name}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
