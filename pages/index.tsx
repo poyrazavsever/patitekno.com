@@ -50,7 +50,7 @@ export default function Home() {
             category:categories(name)
           `)
           .order('created_at', { ascending: false })
-          .limit(3);
+          .limit(4);
 
         if (error) throw error;
         setPosts(
@@ -177,7 +177,7 @@ export default function Home() {
               <div className="animate-spin rounded-full h-8 w-8 border-2 border-primary dark:border-primaryDark border-t-transparent"></div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {posts.map((post) => (
                 <BlogCard
                   key={post.id}
