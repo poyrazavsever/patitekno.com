@@ -13,7 +13,6 @@ import Link from "next/link";
 type BlogPost = {
   id: number;
   title: string;
-  description: string;
   slug: string;
   created_at: string;
   category: {
@@ -182,7 +181,6 @@ export default function Home() {
                 <BlogCard
                   key={post.id}
                   title={post.title}
-                  description={post.description}
                   date={new Date(post.created_at).toLocaleDateString('tr-TR', {
                     year: 'numeric',
                     month: 'long',
