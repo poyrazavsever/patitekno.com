@@ -47,7 +47,7 @@ const Layout = ({children} : props) => {
   const meta = metaMap[basePath] || metaMap['/']
 
   return (
-    <div className='min-h-screen w-full px-6 md:px-0 md:max-w-5xl md:container mx-auto flex flex-col font-nunito'>
+    <div className='min-h-screen w-full px-6 md:px-0 md:max-w-7xl md:container mx-auto flex flex-col font-nunito'>
 
       <Toaster position='top-right'/>
 
